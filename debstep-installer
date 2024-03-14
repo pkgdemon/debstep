@@ -22,7 +22,7 @@ bootstrap()
 checkout()
 {
   # Clone the GNUstep-related repositories
-  git clone --depth=1 https://github.com/gnustep/tools-scripts/tree/master ${SRC}/tools-scripts
+  git clone --depth=1 https://github.com/gnustep/tools-scripts.git ${SRC}/tools-scripts
   git clone --depth=1 https://github.com/ds-repos/tools-make.git ${SRC}/tools-make
   git clone --depth=1 https://github.com/gnustep/libobjc2.git ${SRC}/libobjc2
   git clone --depth=1 https://github.com/gnustep/libs-base.git ${SRC}/libs-base
