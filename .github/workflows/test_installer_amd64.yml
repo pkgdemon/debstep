@@ -11,20 +11,16 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
-    services:
-      debian:
+    container:
         image: debian:bullseye-slim
         options: >-
           --privileged
           --name debian
         ports:
           - 8080:8080
-
     steps:
     - name: Check out repository
       uses: actions/checkout@v3
-
     - name: Test on Debian 12
       run: |
         sudo apt-get update
