@@ -1,0 +1,186 @@
+#!/bin/bash
+
+# Check if the script is run as root
+if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run as root. Please use sudo or run as root."
+    exit 1
+fi
+
+# This variable allows getting back to this repo
+CWD="$(pwd)"
+
+# This variable configures where sources are checked out
+SRC="/gnustep-src"
+
+bootstrap()
+{
+  # Install necessary build dependencies
+  apt-get update && \
+  apt-get install -y \
+      build-essential \
+      clang \
+      cmake \
+      firefox-esr \
+      git \
+      libcairo2-dev \
+      libcups2-dev \
+      libffi-dev \
+      libflite1 \
+      libgif-dev \
+      libgl1-mesa-dev \
+      libglade2-dev \
+      libgnutls28-dev \
+      libicns-dev \
+      libjpeg62-turbo-dev \
+      libmujs-dev \
+      libnotify-dev \
+      libpango1.0-dev \
+      libpocketsphinx-dev \
+      libpng-dev \
+      libreadline-dev \
+      libsndfile1-dev \
+      libtiff5-dev \
+      libwrap0-dev \
+      libx11-dev \
+      libxi-dev \
+      libxext-dev \
+      libxmu-dev \
+      libxslt1-dev \
+      libxml2-dev \
+      libxslt1-dev \
+      libxt-dev \
+      libxtst-dev \
+      ninja-build \
+      sudo \
+      wmaker \
+      x11proto-core-dev \
+      x11proto-xext-dev \
+      xterm
+}
+
+checkout()
+{
+  # Clone the GNUstep-related repositories
+  git clone --depth 1 https://github.com/ds-repos/tools-make.git ${SRC}/tools-make
+  git clone --depth 1 https://github.com/gnustep/libobjc2.git ${SRC}/libobjc2
+  git clone --depth 1 https://github.com/gnustep/libs-base.git ${SRC}/libs-base
+  git clone --depth 1 https://github.com/gnustep/libs-gui.git ${SRC}/libs-gui
+  git clone --depth 1 https://github.com/gnustep/libs-back.git ${SRC}/libs-back
+  git clone --depth 1 https://github.com/gnustep/apps-gworkspace.git ${SRC}/apps-gworkspace
+  git clone --depth 1 https://github.com/gnustep/apps-systempreferences.git ${SRC}/apps-systempreferences
+  git clone --depth 1 https://github.com/gnustep/gap ${SRC}/gap
+  git clone --depth 1 https://github.com/ds-repos/gs-desktop ${SRC}/gs-desktop
+  git clone --depth 1 https://github.com/onflapp/gs-terminal ${SRC}/gs-terminal
+}
+
+gnustep_make() 
+{
+  # Check if GNUstep.sh exists
+  if [ -f "/Developer/Makefiles/GNUstep.sh" ]; then
+    echo "tools-make already exists. Skipping installation."
+    . /Developer/Makefiles/GNUstep.sh
+  else
+    cd "${SRC}/tools-make" && ./configure \
+      --with-layout=dubstep \
+      --with-config-file=/Library/Preferences/GNUstep.conf \
+      --with-library-combo=ng-gnu-gnu \
+       && gmake && gmake install
+    . /Developer/Makefiles/GNUstep.sh
+  fi
+}
+
+libobjc2() 
+{
+  local repo_dir="${SRC}/libobjc2"
+  local build_dir="${repo_dir}/Build"
+  export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
+
+  # Check if Build directory exists
+  if [ ! -d "$build_dir" ]; then
+    mkdir "$build_dir"
+  fi
+
+  # Change to Build directory and configure/build the project
+  if [ -f "/System/Include/Block.h" ] ; then
+    echo "libobjc already exists. Skipping installation."
+  else
+    (cd "$build_dir" && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++)
+    (cd "$build_dir" && ninja install)
+  fi
+}
+
+gnustep() 
+{
+  export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
+  if [ -d "/System/Libraries/gnustep-base/" ] ; then
+    echo "gnustep-base already exists. Skipping installation."
+  else
+    cd "${SRC}/libs-base" && ./configure \
+      --with-installation-domain=SYSTEM \
+      && gmake && gmake install
+  fi
+  if [ -d "/System/Libraries/gnustep-gui" ] ; then
+    echo "libs-gui already exists.  Skipping installation."
+  else
+    cd "${SRC}/libs-gui" && ./configure \
+      && gmake && gmake install
+  fi
+  if [ -d "/System/Bundles/libgnustep-back-030.bundle" ] ; then
+    echo "libs-back already exists. Skipping installation."
+  else
+    cd "${SRC}/libs-back" && ./configure \
+      && gmake && gmake install
+  fi
+  if [ -d "/System/Applications/GWorkspace.app" ] ; then
+    echo "Gworkspace already exists.  Skipping installation."
+  else
+    cd "${SRC}/apps-gworkspace" && ./configure && gmake && gmake install
+  fi
+  if [ -d "/System/Applications/SystemPreferences.app" ] ; then
+    echo "SystemPreferences already exists.  Skipping installation."
+  else
+    cd ${SRC}/apps-systempreferences && gmake && gmake install
+  fi
+}
+
+developer()
+{
+  export GNUSTEP_INSTALLATION_DOMAIN=NETWORK
+  if [ -d "/Developer/Applications/Gorm.app" ] ; then
+    echo "Gorm already exists.  Skipping installation."
+  else
+    cd "${SRC}/apps-gorm" && gmake && gmake install
+  fi
+    if [ -d "/Developer/Applications/ProjectCenter.app" ] ; then
+    echo "ProjectCenter already exists.  Skipping installation."
+  else
+    cd "${SRC}/apps-projectcenter" && gmake && gmake install
+  fi
+    if [ -d "/Developer/Applications/WrapperFactory.app" ] ; then
+    echo "WrapperFactory already exists.  Skipping installation."
+  else
+    cd "${SRC}/gs-desktop/Applications/WrapperFactory" && gmake && gmake install
+  fi
+}
+
+apps()
+{
+  unset GNUSTEP_INSTALLATION_DOMAIN
+  cd ${SRC}/gap/system-apps/Terminal && gmake && gmake install
+  cd ${SRC}/gs-textedit && gmake && gmake install
+  cp -R ${SRC}/gs-desktop/extra-apps/Firefox.app /Applications/
+}
+
+cleanup()
+{
+  # Cleanup GNUstep sources
+  rm -rf ${SRC}
+}
+
+checkout
+gnustep_make
+libobjc2
+gnustep
+developer
+apps
+cleanup
