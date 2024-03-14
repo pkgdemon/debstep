@@ -37,7 +37,7 @@ checkout()
 
 tools_scripts()
 {
-  cd "${SRC}/tools/scripts" && ./install-dependencies-linux
+  cd "${SRC}/tools-scripts" && ./install-dependencies-linux
 }
 
 gnustep_make() 
