@@ -29,5 +29,5 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y shellcheck
-        shellcheck -x debstep-installer
+        shellcheck debstep-installer
         bash debstep-installer

@@ -75,6 +75,7 @@ gnustep_make()
   # Check if GNUstep.sh exists
   if [ -f "/Developer/Makefiles/GNUstep.sh" ]; then
     echo "tools-make already exists. Skipping installation."
+    # shellcheck disable=SC1091
     . /Developer/Makefiles/GNUstep.sh
   else
     cd "${SRC}/tools-make" && ./configure \
@@ -82,6 +83,7 @@ gnustep_make()
       --with-config-file=/Library/Preferences/GNUstep.conf \
       --with-library-combo=ng-gnu-gnu \
        && gmake && gmake install
+    # shellcheck disable=SC1091
     . /Developer/Makefiles/GNUstep.sh
   fi
 }
