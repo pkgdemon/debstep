@@ -50,7 +50,6 @@ bootstrap()
       libxslt1-dev \
       libxt-dev \
       libxtst-dev \
-      ninja-build \
       sudo \
       wmaker \
       x11proto-core-dev \
@@ -98,16 +97,17 @@ libobjc2()
   export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
 
   # Check if Build directory exists
-  if [ ! -d "$build_dir" ]; then
-    mkdir "$build_dir"
+  if [ ! -d "${build_dir}" ]; then
+    mkdir "${build_dir}"
   fi
 
   # Change to Build directory and configure/build the project
   if [ -f "/System/Include/Block.h" ] ; then
     echo "libobjc already exists. Skipping installation."
   else
-    (cd "$build_dir" && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++)
-    (cd "$build_dir" && ninja install)
+    cd ${build_dir} && cmake .. -DGNUSTEP_INSTALL_TYPE=SYSTEM -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+    gmake
+    gmake install
   fi
 }
 
