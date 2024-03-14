@@ -55,16 +55,17 @@ bootstrap()
 checkout()
 {
   # Clone the GNUstep-related repositories
-  git clone --depth 1 https://github.com/ds-repos/tools-make.git ${SRC}/tools-make
-  git clone --depth 1 https://github.com/gnustep/libobjc2.git ${SRC}/libobjc2
-  git clone --depth 1 https://github.com/gnustep/libs-base.git ${SRC}/libs-base
-  git clone --depth 1 https://github.com/gnustep/libs-gui.git ${SRC}/libs-gui
-  git clone --depth 1 https://github.com/gnustep/libs-back.git ${SRC}/libs-back
-  git clone --depth 1 https://github.com/gnustep/apps-gworkspace.git ${SRC}/apps-gworkspace
-  git clone --depth 1 https://github.com/gnustep/apps-systempreferences.git ${SRC}/apps-systempreferences
-  git clone --depth 1 https://github.com/gnustep/gap ${SRC}/gap
-  git clone --depth 1 https://github.com/ds-repos/gs-desktop ${SRC}/gs-desktop
-  git clone --depth 1 https://github.com/onflapp/gs-terminal ${SRC}/gs-terminal
+  git clone --depth=1 https://github.com/gnustep/tools-scripts/tree/master ${SRC}/tools-scripts
+  git clone --depth=1 https://github.com/ds-repos/tools-make.git ${SRC}/tools-make
+  git clone --depth=1 https://github.com/gnustep/libobjc2.git ${SRC}/libobjc2
+  git clone --depth=1 https://github.com/gnustep/libs-base.git ${SRC}/libs-base
+  git clone --depth=1 https://github.com/gnustep/libs-gui.git ${SRC}/libs-gui
+  git clone --depth=1 https://github.com/gnustep/libs-back.git ${SRC}/libs-back
+  git clone --depth=1 https://github.com/gnustep/apps-gworkspace.git ${SRC}/apps-gworkspace
+  git clone --depth=1 https://github.com/gnustep/apps-systempreferences.git ${SRC}/apps-systempreferences
+  git clone --depth=1 https://github.com/gnustep/gap ${SRC}/gap
+  git clone --depth=1 https://github.com/ds-repos/gs-desktop ${SRC}/gs-desktop
+  git clone --depth=1 https://github.com/onflapp/gs-terminal ${SRC}/gs-terminal
 }
 
 gnustep_make() 
