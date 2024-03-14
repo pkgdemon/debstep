@@ -17,44 +17,39 @@ bootstrap()
   # Install necessary build dependencies
   apt-get update && \
   apt-get install -y \
-      build-essential \
-      clang \
-      cmake \
-      firefox-esr \
-      git \
-      libcairo2-dev \
-      libcups2-dev \
-      libffi-dev \
-      libflite1 \
-      libgif-dev \
-      libgl1-mesa-dev \
-      libglade2-dev \
-      libgnutls28-dev \
-      libicns-dev \
-      libjpeg62-turbo-dev \
-      libmujs-dev \
-      libnotify-dev \
-      libpango1.0-dev \
-      libpocketsphinx-dev \
-      libpng-dev \
-      libreadline-dev \
-      libsndfile1-dev \
-      libtiff5-dev \
-      libwrap0-dev \
-      libx11-dev \
-      libxi-dev \
-      libxext-dev \
-      libxmu-dev \
-      libxslt1-dev \
-      libxml2-dev \
-      libxslt1-dev \
-      libxt-dev \
-      libxtst-dev \
-      sudo \
-      wmaker \
-      x11proto-core-dev \
-      x11proto-xext-dev \
-      xterm
+        clang \
+        cmake \
+        firefox-esr \
+        flite-dev \
+        freeglut3-dev \
+        gnutls-dev \
+        git \
+        gobjc \
+        gobjc++ \
+        libavahi-client-dev \
+        libblocksruntime-dev \
+        libcairo2-dev \
+        libffi-dev \
+        libgnutls-dev \
+        libicns-dev \
+        libicu-dev \
+        libjpeg-dev \
+        libmagickcore-dev \
+        libpocketsphinx-dev \
+        libpng-dev \
+        libportaudio-dev \
+        libssl-dev \
+        libtiff-dev \
+        libxft-dev \
+        libxml2-dev \
+        libxslt-dev \
+        libxt-dev \
+        pocketsphinx \
+        pocketsphinx-en-us \
+        sphinxbase-utils \
+        sphinxtrain \
+        wmaker \
+        xterm
 }
 
 checkout()
