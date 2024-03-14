@@ -6,9 +6,6 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-# This variable allows getting back to this repo
-CWD="$(pwd)"
-
 # This variable configures where sources are checked out
 SRC="/gnustep-src"
 
