@@ -16,40 +16,7 @@ bootstrap()
 {
   # Install necessary build dependencies
   apt-get update && \
-  apt-get install -y \
-        clang \
-        cmake \
-        firefox-esr \
-        flite-dev \
-        freeglut3-dev \
-        gnutls-dev \
-        git \
-        gobjc \
-        gobjc++ \
-        libavahi-client-dev \
-        libblocksruntime-dev \
-        libcairo2-dev \
-        libffi-dev \
-        libgnutls-dev \
-        libicns-dev \
-        libicu-dev \
-        libjpeg-dev \
-        libmagickcore-dev \
-        libpocketsphinx-dev \
-        libpng-dev \
-        libportaudio-dev \
-        libssl-dev \
-        libtiff-dev \
-        libxft-dev \
-        libxml2-dev \
-        libxslt-dev \
-        libxt-dev \
-        pocketsphinx \
-        pocketsphinx-en-us \
-        sphinxbase-utils \
-        sphinxtrain \
-        wmaker \
-        xterm
+  apt-get install -y git
 }
 
 checkout()
@@ -66,6 +33,11 @@ checkout()
   git clone --depth=1 https://github.com/gnustep/gap ${SRC}/gap
   git clone --depth=1 https://github.com/ds-repos/gs-desktop ${SRC}/gs-desktop
   git clone --depth=1 https://github.com/onflapp/gs-terminal ${SRC}/gs-terminal
+}
+
+tools_scripts()
+{
+  cd "${SRC}/tools/scripts" && ./install-dependencies-linux
 }
 
 gnustep_make() 
@@ -176,6 +148,7 @@ cleanup()
 }
 
 bootstrap
+tools_scripts
 checkout
 gnustep_make
 libobjc2
