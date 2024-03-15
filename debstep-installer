@@ -46,6 +46,8 @@ gnustep_make()
     # shellcheck disable=SC1091
     . /Developer/Makefiles/GNUstep.sh
   else
+    pwd
+    find / -name debstep
     cp FilesystemLayouts/debstep ${SRC}/tools-make/FilesystemLayouts/debstep
     cd "${SRC}/tools-make" && ./configure \
       --with-layout=debstep \
