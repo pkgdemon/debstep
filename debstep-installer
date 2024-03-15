@@ -30,6 +30,8 @@ checkout()
   git clone --depth=1 https://github.com/gnustep/libs-back.git ${SRC}/libs-back
   git clone --depth=1 https://github.com/gnustep/apps-gworkspace.git ${SRC}/apps-gworkspace
   git clone --depth=1 https://github.com/gnustep/apps-systempreferences.git ${SRC}/apps-systempreferences
+  git clone --depth=1 https://github.com/gnustep/apps-gorm ${SRC}/apps-gorm
+  git clone --depth=1 https://github.com/gnustep/apps-projectcenter ${SRC}/apps-projectcenter
   git clone --depth=1 https://github.com/gnustep/gap ${SRC}/gap
 }
 
@@ -135,7 +137,6 @@ apps()
 {
   export GNUSTEP_INSTALLATION_DOMAIN=LOCAL
   cd ${SRC}/gap/system-apps/Terminal && gmake && gmake install
-  cd ${SRC}/gs-textedit && gmake && gmake install
 }
 
 cleanup()
