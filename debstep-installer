@@ -31,7 +31,6 @@ checkout()
   git clone --depth=1 https://github.com/gnustep/apps-gworkspace.git ${SRC}/apps-gworkspace
   git clone --depth=1 https://github.com/gnustep/apps-systempreferences.git ${SRC}/apps-systempreferences
   git clone --depth=1 https://github.com/gnustep/gap ${SRC}/gap
-  git clone --depth=1 https://github.com/ds-repos/gs-desktop ${SRC}/gs-desktop
 }
 
 tools_scripts()
@@ -125,19 +124,13 @@ developer()
   else
     cd "${SRC}/apps-projectcenter" && gmake && gmake install
   fi
-    if [ -d "/Developer/Applications/WrapperFactory.app" ] ; then
-    echo "WrapperFactory already exists.  Skipping installation."
-  else
-    cd "${SRC}/gs-desktop/Applications/WrapperFactory" && gmake && gmake install
-  fi
 }
 
 apps()
 {
-  unset GNUSTEP_INSTALLATION_DOMAIN
+  export GNUSTEP_INSTALLATION_DOMAIN=LOCAL
   cd ${SRC}/gap/system-apps/Terminal && gmake && gmake install
   cd ${SRC}/gs-textedit && gmake && gmake install
-  cp -R ${SRC}/gs-desktop/extra-apps/Firefox.app /Applications/
 }
 
 cleanup()
