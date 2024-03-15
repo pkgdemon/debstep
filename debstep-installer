@@ -32,7 +32,6 @@ checkout()
   git clone --depth=1 https://github.com/gnustep/apps-systempreferences.git ${SRC}/apps-systempreferences
   git clone --depth=1 https://github.com/gnustep/gap ${SRC}/gap
   git clone --depth=1 https://github.com/ds-repos/gs-desktop ${SRC}/gs-desktop
-  git clone --depth=1 https://github.com/onflapp/gs-terminal ${SRC}/gs-terminal
 }
 
 tools_scripts()
