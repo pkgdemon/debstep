@@ -148,8 +148,8 @@ cleanup()
 }
 
 bootstrap
-tools_scripts
 checkout
+tools_scripts
 gnustep_make
 libobjc2
 gnustep
