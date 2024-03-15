@@ -15,8 +15,8 @@ SRC="/gnustep-src"
 bootstrap()
 {
   # Install necessary build dependencies
-  apt-get update && \
-  apt-get install -y git
+  apt-get update
+  apt-get install -y git sudo
 }
 
 checkout()
