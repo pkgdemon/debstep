@@ -33,6 +33,11 @@ checkout()
   git clone --depth=1 https://github.com/gnustep/gap ${SRC}/gap
 }
 
+overlay()
+{
+  pwd
+}
+
 tools_scripts()
 {
   cd "${SRC}/tools-scripts" && ./install-dependencies-linux
@@ -46,8 +51,8 @@ gnustep_make()
     # shellcheck disable=SC1091
     . /Developer/Makefiles/GNUstep.sh
   else
-    pwd
-    find / -name debstep
+    # pwd
+    # find / -name debstep
     cp FilesystemLayouts/debstep ${SRC}/tools-make/FilesystemLayouts/debstep
     cd "${SRC}/tools-make" && ./configure \
       --with-layout=debstep \
@@ -144,6 +149,7 @@ cleanup()
 
 bootstrap
 checkout
+overlay
 tools_scripts
 gnustep_make
 libobjc2
