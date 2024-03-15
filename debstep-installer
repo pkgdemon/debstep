@@ -23,7 +23,7 @@ checkout()
 {
   # Clone the GNUstep-related repositories
   git clone --depth=1 https://github.com/gnustep/tools-scripts.git ${SRC}/tools-scripts
-  git clone --depth=1 https://github.com/ds-repos/tools-make.git ${SRC}/tools-make
+  git clone --depth=1 https://github.com/gnustep/tools-make.git ${SRC}/tools-make
   git clone --depth=1 https://github.com/gnustep/libobjc2.git ${SRC}/libobjc2
   git clone --depth=1 https://github.com/gnustep/libs-base.git ${SRC}/libs-base
   git clone --depth=1 https://github.com/gnustep/libs-gui.git ${SRC}/libs-gui
@@ -46,8 +46,9 @@ gnustep_make()
     # shellcheck disable=SC1091
     . /Developer/Makefiles/GNUstep.sh
   else
+    cp FilesystemLayouts/debstep ${SRC}/tools-make/FilesystemLayouts/debstep
     cd "${SRC}/tools-make" && ./configure \
-      --with-layout=dubstep \
+      --with-layout=debstep \
       --with-config-file=/Library/Preferences/GNUstep.conf \
       --with-library-combo=ng-gnu-gnu \
        && gmake && gmake install
