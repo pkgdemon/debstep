@@ -25,17 +25,17 @@ bootstrap()
 checkout()
 {
   # Clone the GNUstep-related repositories
-  git clone --depth=1 https://github.com/gnustep/tools-scripts.git ${SRC}/tools-scripts
-  git clone -b make-2_9_1 --depth=1 https://github.com/gnustep/tools-make.git ${SRC}/tools-make
-  git clone -b  v2.2 --depth=1 https://github.com/gnustep/libobjc2.git ${SRC}/libobjc2
-  git clone -b base-1_29_0 --depth=1 https://github.com/gnustep/libs-base.git ${SRC}/libs-base
-  git clone -b gui-0_30_0 --depth=1 https://github.com/gnustep/libs-gui.git ${SRC}/libs-gui
-  git clone -b back-0_30_0 --depth=1 https://github.com/gnustep/libs-back.git ${SRC}/libs-back
-  git clone --depth=1 https://github.com/gnustep/apps-gworkspace.git ${SRC}/apps-gworkspace
-  git clone --depth=1 https://github.com/gnustep/apps-systempreferences.git ${SRC}/apps-systempreferences
-  git clone --depth=1 https://github.com/gnustep/apps-gorm ${SRC}/apps-gorm
-  git clone --depth=1 https://github.com/gnustep/apps-projectcenter ${SRC}/apps-projectcenter
-  git clone --depth=1 https://github.com/gnustep/gap ${SRC}/gap
+  git clone -b master https://github.com/gnustep/tools-scripts.git ${SRC}/tools-scripts --depth=1
+  git clone -b make-2_9_1 https://github.com/gnustep/tools-make.git ${SRC}/tools-make --depth=1
+  git clone -b v2.2 https://github.com/gnustep/libobjc2.git ${SRC}/libobjc2 --depth=1
+  git clone -b base-1_29_0 https://github.com/gnustep/libs-base.git ${SRC}/libs-base --depth=1
+  git clone -b gui-0_30_0 https://github.com/gnustep/libs-gui.git ${SRC}/libs-gui --depth=1
+  git clone -b back-0_30_0 https://github.com/gnustep/libs-back.git ${SRC}/libs-back --depth=1
+  git clone -b master https://github.com/gnustep/apps-gworkspace.git ${SRC}/apps-gworkspace --depth=1
+  git clone -b master https://github.com/gnustep/apps-systempreferences.git ${SRC}/apps-systempreferences --depth=1
+  git clone -b master https://github.com/gnustep/apps-gorm ${SRC}/apps-gorm --depth=1
+  git clone -b master https://github.com/gnustep/apps-projectcenter ${SRC}/apps-projectcenter --depth=1
+  git clone -b master https://github.com/gnustep/gap ${SRC}/gap --depth=1
 }
 
 source_overlay()
@@ -81,7 +81,7 @@ libobjc2()
   if [ -f "/System/Include/Block.h" ] ; then
     echo "libobjc already exists. Skipping installation."
   else
-    cd ${build_dir} && cmake .. -DGNUSTEP_INSTALL_TYPE=SYSTEM -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+    cd ${build_dir} && cmake .. -DGNUSTEP_INSTALL_TYPE=SYSTEM -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
     gmake -j"${CPUS}"
     gmake install
   fi
