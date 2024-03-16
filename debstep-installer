@@ -72,7 +72,7 @@ libobjc2()
   if [ -f "/System/Include/Block.h" ] ; then
     echo "libobjc already exists. Skipping installation."
   else
-    mkdir 
+    mkdir "${SRC}/libobjc2/Build"
     cd "${SRC}/libobjc2/Build" && cmake .. \
       -DGNUSTEP_INSTALL_TYPE=SYSTEM \
       -DCMAKE_BUILD_TYPE=Release \
