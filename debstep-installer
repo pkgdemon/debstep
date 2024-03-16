@@ -68,20 +68,16 @@ gnustep_make()
 
 libobjc2() 
 {
-  local repo_dir="${SRC}/libobjc2"
-  local build_dir="${repo_dir}/Build"
   export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
-
-  # Check if Build directory exists
-  if [ ! -d "${build_dir}" ]; then
-    mkdir "${build_dir}"
-  fi
-
-  # Change to Build directory and configure/build the project
   if [ -f "/System/Include/Block.h" ] ; then
     echo "libobjc already exists. Skipping installation."
   else
-    cd ${build_dir} && cmake .. -DGNUSTEP_INSTALL_TYPE=SYSTEM -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+    mkdir 
+    cd "${SRC}/libobjc2/Build" && cmake .. \
+      -DGNUSTEP_INSTALL_TYPE=SYSTEM \
+      -DCMAKE_BUILD_TYPE=Release \
+      -DCMAKE_C_COMPILER=clang \
+      -DCMAKE_CXX_COMPILER=clang++
     gmake -j"${CPUS}"
     gmake install
   fi
