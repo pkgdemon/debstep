@@ -19,7 +19,19 @@ bootstrap()
 {
   # Install necessary build dependencies
   apt-get update
-  apt-get install -y libcurl4-openssl-dev git sudo
+  apt-get install -y \
+    libcurl4-openssl-dev \
+    libmagic-dev \
+    libudisks2-dev \
+    libdbus-1-dev \
+    libupower-glib-dev \
+    libxkbfile-dev \
+    libxcursor-dev \
+    libxrandr-dev \
+    libpulse-dev \
+    libpam0g-dev \
+    git \
+    sudo
 }
 
 checkout()
@@ -35,6 +47,7 @@ checkout()
   git clone -b back-0_30_0 https://github.com/gnustep/libs-back.git ${SRC}/libs-back --depth=1
   git clone -b master https://github.com/gnustep/apps-gworkspace.git ${SRC}/apps-gworkspace --depth=1
   git clone -b master https://github.com/gnustep/apps-systempreferences.git ${SRC}/apps-systempreferences --depth=1
+  git clone -b master https://github.com/trunkmaster/nextspace ${SRC}/nextspace --depth=1
   git clone -b master https://github.com/gnustep/apps-gorm ${SRC}/apps-gorm --depth=1
   git clone -b master https://github.com/gnustep/apps-projectcenter ${SRC}/apps-projectcenter --depth=1
   git clone -b master https://github.com/gnustep/gap ${SRC}/gap --depth=1
@@ -150,6 +163,9 @@ gnustep()
   else
     cd ${SRC}/apps-systempreferences && gmake -j"${CPUS}" && gmake install
   fi
+  cd ${SRC}/nextspace/Frameworks && gmake -j"${CPUS}" && gmake install
+  cd ${SRC}/nextspace/Applications/Login && gmake -j"${CPUS}" && gmake install
+
 }
 
 developer()
