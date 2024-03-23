@@ -85,6 +85,25 @@ libdispatch()
   rm /System/include/Block_private.h
 }
 
+foundation()
+{
+  export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
+  mkdir "${SRC}/swift-corelibs-foundation/Build"
+  cd "${SRC}/swift-corelibs-foundation/Build" && cmake .. \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_C_COMPILER=clang \
+    -DCMAKE_CXX_COMPILER=clang++ \
+	  -DCMAKE_SHARED_LINKER_FLAGS="-L/System/lib -luuid" \
+	  -DCF_DEPLOYMENT_SWIFT=NO \
+	  -DBUILD_SHARED_LIBS=YES \
+	  -DCMAKE_INSTALL_PREFIX=/System \
+	  -DCMAKE_INSTALL_LIBDIR=/System/lib \
+	  -DCMAKE_LIBRARY_PATH=/System/lib \
+	  -DCMAKE_SKIP_RPATH=ON
+  gmake -j"${CPUS}"
+  gmake install
+}
+
 libobjc2() 
 {
   export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
@@ -165,6 +184,7 @@ source_overlay
 tools_scripts
 gnustep_make
 libdispatch
+foundation
 libobjc2
 gnustep
 developer
