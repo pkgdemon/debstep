@@ -85,6 +85,19 @@ libobjc2()
   fi
 }
 
+libdispatch() 
+{
+  export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
+  mkdir "${SRC}/swift-corelibs-libdispatch/Build"
+  cd "${SRC}/swift-corelibs-libdispatch/Build" && cmake .. \
+    -DGNUSTEP_INSTALL_TYPE=SYSTEM \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_C_COMPILER=clang \
+    -DCMAKE_CXX_COMPILER=clang++
+  gmake -j"${CPUS}"
+  gmake install
+}
+
 gnustep() 
 {
   export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
@@ -152,6 +165,7 @@ source_overlay
 tools_scripts
 gnustep_make
 libobjc2
+libdispatch
 gnustep
 developer
 apps
