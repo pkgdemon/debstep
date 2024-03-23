@@ -88,18 +88,14 @@ libdispatch()
 libobjc2() 
 {
   export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
-  if [ -f "/System/include/Block.h" ] ; then
-    echo "libobjc already exists. Skipping installation."
-  else
-    mkdir "${SRC}/libobjc2/Build"
-    cd "${SRC}/libobjc2/Build" && cmake .. \
-      -DGNUSTEP_INSTALL_TYPE=SYSTEM \
-      -DCMAKE_BUILD_TYPE=Release \
-      -DCMAKE_C_COMPILER=clang \
-      -DCMAKE_CXX_COMPILER=clang++
-    gmake -j"${CPUS}"
-    gmake install
-  fi
+  mkdir "${SRC}/libobjc2/Build"
+  cd "${SRC}/libobjc2/Build" && cmake .. \
+    -DGNUSTEP_INSTALL_TYPE=SYSTEM \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_C_COMPILER=clang \
+    -DCMAKE_CXX_COMPILER=clang++
+  gmake -j"${CPUS}"
+  gmake install
 }
 
 gnustep() 
