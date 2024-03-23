@@ -19,7 +19,7 @@ bootstrap()
 {
   # Install necessary build dependencies
   apt-get update
-  apt-get install -y curl git sudo
+  apt-get install -y libcurl4-openssl-dev git sudo
 }
 
 checkout()
