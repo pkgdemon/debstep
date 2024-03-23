@@ -68,10 +68,27 @@ gnustep_make()
   fi
 }
 
+libdispatch() 
+{
+  export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
+  mkdir "${SRC}/swift-corelibs-libdispatch/Build"
+  cd "${SRC}/swift-corelibs-libdispatch/Build" && cmake .. \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_C_COMPILER=clang \
+    -DCMAKE_CXX_COMPILER=clang++ \
+    -DCMAKE_INSTALL_PREFIX=/System \
+	  -DCMAKE_INSTALL_LIBDIR=/System/lib \
+	  -DCMAKE_INSTALL_MANDIR=/usr/NextSpace/Documentation/man \
+	  -DINSTALL_PRIVATE_HEADERS=YES \
+  gmake -j"${CPUS}"
+  gmake install
+  rm /System/include/Block_private.h
+}
+
 libobjc2() 
 {
   export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
-  if [ -f "/System/Include/Block.h" ] ; then
+  if [ -f "/System/include/Block.h" ] ; then
     echo "libobjc already exists. Skipping installation."
   else
     mkdir "${SRC}/libobjc2/Build"
@@ -83,19 +100,6 @@ libobjc2()
     gmake -j"${CPUS}"
     gmake install
   fi
-}
-
-libdispatch() 
-{
-  export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
-  mkdir "${SRC}/swift-corelibs-libdispatch/Build"
-  cd "${SRC}/swift-corelibs-libdispatch/Build" && cmake .. \
-    -DGNUSTEP_INSTALL_TYPE=SYSTEM \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_C_COMPILER=clang \
-    -DCMAKE_CXX_COMPILER=clang++
-  gmake -j"${CPUS}"
-  gmake install
 }
 
 gnustep() 
@@ -164,8 +168,8 @@ checkout
 source_overlay
 tools_scripts
 gnustep_make
-libobjc2
 libdispatch
+libobjc2
 gnustep
 developer
 apps
