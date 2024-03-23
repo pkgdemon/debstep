@@ -47,7 +47,7 @@ checkout()
   git clone -b back-0_30_0 https://github.com/gnustep/libs-back.git ${SRC}/libs-back --depth=1
   git clone -b master https://github.com/gnustep/apps-gworkspace.git ${SRC}/apps-gworkspace --depth=1
   git clone -b master https://github.com/gnustep/apps-systempreferences.git ${SRC}/apps-systempreferences --depth=1
-  git clone -b master https://github.com/trunkmaster/nextspace ${SRC}/nextspace --depth=1
+  git clone -b master https://github.com/pkgdemon/nextspace ${SRC}/nextspace --depth=1
   git clone -b master https://github.com/gnustep/apps-gorm ${SRC}/apps-gorm --depth=1
   git clone -b master https://github.com/gnustep/apps-projectcenter ${SRC}/apps-projectcenter --depth=1
   git clone -b master https://github.com/gnustep/gap ${SRC}/gap --depth=1
