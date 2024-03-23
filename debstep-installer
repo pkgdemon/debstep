@@ -78,7 +78,7 @@ libdispatch()
     -DCMAKE_CXX_COMPILER=clang++ \
     -DCMAKE_INSTALL_PREFIX=/System \
 	  -DCMAKE_INSTALL_LIBDIR=/System/lib \
-	  -DCMAKE_INSTALL_MANDIR=/usr/NextSpace/Documentation/man \
+	  -DCMAKE_INSTALL_MANDIR=/System/Documentation/man \
 	  -DINSTALL_PRIVATE_HEADERS=YES \
   gmake -j"${CPUS}"
   gmake install
