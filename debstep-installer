@@ -28,8 +28,8 @@ checkout()
   git clone -b master https://github.com/gnustep/tools-scripts.git ${SRC}/tools-scripts --depth=1
   git clone -b make-2_9_1 https://github.com/gnustep/tools-make.git ${SRC}/tools-make --depth=1
   git clone -b v2.2 https://github.com/gnustep/libobjc2.git ${SRC}/libobjc2 --depth=1
-  git clone -b swift-5.10-RELEASE https://github.com/apple/swift-corelibs-libdispatch.git ${SRC}/swift-corelibs-libdispatch --depth=1
-  git clone -b swift-5.10-RELEASE https://github.com/apple/swift-corelibs-foundation ${SRC}/swift-corelibs-foundation --depth=1 
+  git clone -b swift-5.9.2-RELEASE https://github.com/apple/swift-corelibs-libdispatch.git ${SRC}/swift-corelibs-libdispatch --depth=1
+  git clone -b swift-5.9.2-RELEASE https://github.com/apple/swift-corelibs-foundation ${SRC}/swift-corelibs-foundation --depth=1 
   git clone -b base-1_29_0 https://github.com/gnustep/libs-base.git ${SRC}/libs-base --depth=1
   git clone -b gui-0_30_0 https://github.com/gnustep/libs-gui.git ${SRC}/libs-gui --depth=1
   git clone -b back-0_30_0 https://github.com/gnustep/libs-back.git ${SRC}/libs-back --depth=1
