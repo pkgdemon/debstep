@@ -88,11 +88,12 @@ libdispatch()
 foundation()
 {
   export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
+  C_FLAGS="-I/usr/NextSpace/include -Wno-switch -Wno-enum-conversion"
   mkdir "${SRC}/swift-corelibs-foundation/Build"
   cd "${SRC}/swift-corelibs-foundation/Build" && cmake .. \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_C_COMPILER=clang \
-    -DCMAKE_CXX_COMPILER=clang++ \
+    -DCMAKE_C_FLAGS="${C_FLAGS}" \
 	  -DCMAKE_SHARED_LINKER_FLAGS="-L/System/lib -luuid" \
 	  -DCF_DEPLOYMENT_SWIFT=NO \
 	  -DBUILD_SHARED_LIBS=YES \
