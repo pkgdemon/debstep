@@ -88,7 +88,7 @@ libdispatch()
 foundation()
 {
   export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
-  C_FLAGS="-I/usr/NextSpace/include -Wno-switch -Wno-enum-conversion"
+  C_FLAGS="-I/System/include -Wno-switch -Wno-enum-conversion"
   mkdir "${SRC}/swift-corelibs-foundation/Build"
   cd "${SRC}/swift-corelibs-foundation/Build" && cmake .. \
     -DCMAKE_BUILD_TYPE=Release \
