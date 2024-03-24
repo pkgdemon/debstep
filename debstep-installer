@@ -164,8 +164,6 @@ gnustep()
     cd ${SRC}/apps-systempreferences && gmake -j"${CPUS}" && gmake install
   fi
   cd ${SRC}/nextspace/Frameworks && gmake -j"${CPUS}" && gmake install
-  cd ${SRC}/nextspace/Applications/Login && gmake -j"${CPUS}" && gmake install
-
 }
 
 developer()
