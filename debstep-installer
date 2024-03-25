@@ -168,7 +168,7 @@ gnustep()
     cd ${SRC}/apps-systempreferences && gmake -j"${CPUS}" && gmake install
   fi
   cd ${SRC}/plugins-themes-Gtk && gmake -j"${CPUS}" || exit 1 && gmake install
-  cd ${SRC}/nextspace/Frameworks && gmake -j"${CPUS}" || exit 1 && gmake install
+  #cd ${SRC}/nextspace/Frameworks && gmake -j"${CPUS}" || exit 1 && gmake install
 }
 
 developer()
@@ -203,8 +203,8 @@ checkout
 source_overlay
 tools_scripts
 gnustep_make
-libdispatch
-foundation
+#libdispatch
+#foundation
 libobjc2
 gnustep
 developer
