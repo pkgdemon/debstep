@@ -1,7 +1,7 @@
 # debstep
 Playground for building GNUstep on Debian
 
-This proect bootstraps GNUstep on Debian in a few special ways for my other project isostep.  In the future this will create packages that will be ingested by my other projects dockerstep, isostep.  
+This project bootstraps GNUstep on Debian in a few special ways for my other project isostep.  In the future this will create packages that will be ingested by my other projects dockerstep, isostep.  
 
 **Features**
 
